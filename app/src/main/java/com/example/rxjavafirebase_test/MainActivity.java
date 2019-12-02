@@ -19,6 +19,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -72,13 +73,15 @@ public class MainActivity extends AppCompatActivity {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(getObserver()));
 
-        // Same result only using .map() operator
+        // Example if I wanted to use a map for a List
         /*mycompositeDisposable.add(
                 stringObservable.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .map(string -> {
-                            textView.setText(textView.getText().toString() + string);
-                            return string;
+                        .map(new Function<List<String>, Object>() {
+                            @Override
+                            public Object apply(List<String> strings) throws Exception {
+                                return null;
+                            }
                         })
                         .subscribe());*/
     }
